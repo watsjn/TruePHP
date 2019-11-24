@@ -1,13 +1,16 @@
+up: docker-up
+init: docker-down docker-pull docker-build docker-up
+
 docker-up:
 	podman-compose up -d
 
 docker-down:
-	podman-compose down --remove-orphans
+	podman-compose down
 
 docker-pull:
 	podman-compose pull
 
-docker build:
+docker-build:
 	podman-compose build
 
 cli:
