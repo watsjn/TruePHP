@@ -1,11 +1,16 @@
-dev-build:
-	podman build --file=manager/docker/development/php-cli.docker --tag manager-php-cli manager/docker/development
+docker-up:
+	podman-compose up -d
 
-dev-cli:
-	podman run --rm -v ${PWD}/manager:/app:Z manager-php-cli php bin/app.php
+docker-down:
+	podman-compose down --remove-orphans
 
-prod-build:
-	podman build --file=manager/docker/production/php-cli.docker --tag manager-php-cli manager
+docker-pull:
+	podman-compose pull
 
-prod-cli:
-	podman run --rm manager-php-cli php bin/app.php
+docker build:
+	podman-compose build
+
+cli:
+	podman-compose run --rm manager-php-cli php bin/app.php
+
+
