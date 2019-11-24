@@ -1,5 +1,5 @@
 dev-build:
-	podman build --file=manager/docker/development/php-cli.docker --tag manager-php-cli manager
+	podman build --file=manager/docker/development/php-cli.docker --tag manager-php-cli manager/docker/development
 
 dev-cli:
 	podman run --rm -v ${PWD}/manager:/app:Z manager-php-cli php bin/app.php
