@@ -17,7 +17,7 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-manager-init: manager-composer-install manager-migrations
+manager-init: manager-composer-install manager-migrations manager-test
 
 manager-composer-install:
 	docker-compose run --rm manager-php-cli composer install
