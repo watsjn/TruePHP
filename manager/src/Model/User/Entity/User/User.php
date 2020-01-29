@@ -171,4 +171,12 @@ class User
         return $this->networks->toArray();
     }
 
+    /**
+     * @return ResetToken|null
+     */
+    public function getResetToken(): ?ResetToken
+    {
+        return $this->resetToken;
+    }
+
 }
