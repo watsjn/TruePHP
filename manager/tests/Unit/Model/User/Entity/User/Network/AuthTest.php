@@ -7,13 +7,14 @@ namespace App\tests\Unit\Entity\User\Network;
 use App\Model\User\Entity\User\Id;
 use App\Model\User\Entity\User\Network;
 use App\Model\User\Entity\User\User;
+use App\Tests\Builder\User\UserBuilder;
 use PHPUnit\Framework\TestCase;
 
 class AuthTest extends TestCase
 {
     public function testSuccess(): void
     {
-        $user = User::signUpByNetwork(Id::next(), new \DateTimeImmutable(), $network = 'vk', $identity = '000001');
+        $user = (new UserBuilder())->viaNetwork($network = 'vk', $identity = '0001')->build();
 
         self::assertTrue($user->isActive());
 
