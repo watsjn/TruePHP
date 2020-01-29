@@ -16,6 +16,7 @@ class UserBuilder
     private $email;
     private $hash;
     private $token;
+    private $confirmed;
 
     private $network;
     private $identity;
@@ -35,6 +36,13 @@ class UserBuilder
         return $clone;
     }
 
+    public function confirmed(): self
+    {
+        $clone = clone $this;
+        $clone->confirmed = true;
+        return $clone;
+    }
+
     public function viaNetwork(string $network = null, string $identity = null): self
     {
         $clone = clone $this;
@@ -45,18 +53,24 @@ class UserBuilder
 
     public function build(): ?User
     {
+        $user = null;
+
         if ($this->email) {
-            return User::signUpByEmail(
+            $user = User::signUpByEmail(
                 $this->id,
                 $this->date,
                 $this->email,
                 $this->hash,
                 $this->token
             );
+
+            if ($this->confirmed) {
+                $user->confirmSignUp();
+            }
         }
 
         if ($this->network) {
-            return User::signUpByNetwork(
+            $user = User::signUpByNetwork(
                 $this->id,
                 $this->date,
                 $this->network,
@@ -64,7 +78,7 @@ class UserBuilder
             );
         }
 
-        return null;
+        return $user;
     }
 
 }

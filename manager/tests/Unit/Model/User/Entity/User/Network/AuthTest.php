@@ -14,7 +14,7 @@ class AuthTest extends TestCase
 {
     public function testSuccess(): void
     {
-        $user = (new UserBuilder())->viaNetwork($network = 'vk', $identity = '0001')->build();
+        $user = (new UserBuilder())->viaNetwork($network = 'vk', $identity = '0001')->confirmed()->build();
 
         self::assertTrue($user->isActive());
 
