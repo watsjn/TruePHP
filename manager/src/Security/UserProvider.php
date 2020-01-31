@@ -43,7 +43,13 @@ class UserProvider implements UserProviderInterface
 
     private function loadUser($username): AuthView
     {
-        if ($user = $this->users->findForAuth($username)) {
+        $chunks = explode(':', $username);
+
+        if (\count($chunks) === 2 && $user = $this->users->findForAuthByNetwork($chunks[0], $chunks[1])) {
+            return $user;
+        }
+
+        if ($user = $this->users->findForAuthByEmail($username)) {
             return $user;
         }
 
