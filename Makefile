@@ -17,13 +17,16 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-manager-init: manager-composer-install manager-assets-install manager-wait-db manager-migrations manager-fixtures manager-test
+manager-init: manager-composer-install manager-assets-install manager-assets-build manager-wait-db manager-migrations manager-fixtures manager-test
 
 manager-composer-install:
 	docker-compose run --rm manager-php-cli composer install
 
 manager-assets-install:
 	docker-compose run --rm manager-node yarn install
+
+manager-assets-build:
+	docker-compose run --rm manager-node yarn build
 
 manager-wait-db:
 	until docker-compose exec -T manager-postgres pg_isready --timeout=0 --dbname=app ; do sleep 1 ; done
