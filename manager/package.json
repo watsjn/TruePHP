@@ -16,8 +16,12 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@coreui/coreui": "^2.1.16",
+        "@coreui/icons": "^1.0.0",
+        "@coreui/utils": "^1.2.2",
         "bootstrap": "^4.4.1",
         "jquery": "^3.4.1",
+        "perfect-scrollbar": "^1.5.0",
         "popper.js": "^1.16.1"
     }
 }
